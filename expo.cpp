@@ -7,7 +7,9 @@
 
 /*!
 	\brief Function that return base powers to expo
+	
 
+	@Guilherme Lima
 */
 
 unsigned long long calcExpo (int base, int expo){
