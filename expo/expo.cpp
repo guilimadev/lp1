@@ -1,5 +1,5 @@
 #include <iostream>
-#include "raise.h"
+#include "raise.cpp"
 
 #define MIN_BASE 0
 #define MAX_BASE 10
