@@ -1,5 +1,6 @@
-#include <iostream>
+#include <iostream> 
 
+// How Many x's
 
 int count_digit(int num, int digit){
 	int sum = 0;
