@@ -3,9 +3,15 @@
 
 int count_digit(int num, int digit){
 	int sum = 0;
-	if((num % 10) == digit){
-		sum++;
-	}
+
+	while(num > 0)
+    {
+        if((num % 10) == digit){
+          sum++;
+          std::cout << "Somando : " << num << std::endl;          
+  		}
+          num /= 10;
+    }
 	return sum;
 
 }
@@ -29,5 +35,5 @@ int main(void){
 		qtd += count_digit(i,x);
 	}
 
-	std::cout << qtd << std::endl;
+	std::cout << "Quantidade de repeticoes: " << qtd << std::endl;
 }
