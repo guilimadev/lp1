@@ -21,6 +21,29 @@ void print(int *first, int *last){
 
 int * filter (int * first, int * last){
 
+	auto sz = std::distance(first, last);
+	int cont = sz-1;
+	int k = 0;
+		while(k <= cont){
+			for(auto i(0u); i < sz; ++i){
+				if(first[i] <= 0 ){
+					int cont = i;
+					int j = i;
+
+					while(cont < sz){				
+						first[j] = first[j+1];			
+						cont++;
+						j++;
+					}
+					sz--;
+				}							
+			}
+			k++;			
+		}		
+	
+	last = &first[sz];
+
+	return last;
 }
 
 #define MAX_LEN 100
@@ -54,10 +77,21 @@ int main(void){
 		}
 
 		// auto new_last = filter (std::begin(A), std::end(A)+length);
-	
+		std::cout << "Vetor inicial: ";
 		print(std::begin(A), std::begin(A)+length);
 		std::cout << std::endl;
+
+		auto new_last = filter(std::begin(A), std::begin(A)+length);
+		std::cout << std::endl;
+		std::cout << "Vetor filtrado: ";
+		print(std::begin(A), new_last);
+		std::cout << std::endl << "--------------" << std::endl;
+		// std::cout << std::endl << "New last: " << new_last << std::endl;		
+
+		
 	}
+
+
 
 
 	/* = {2, 5, 6, 5, 6, 7};
