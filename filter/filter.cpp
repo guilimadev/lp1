@@ -29,13 +29,14 @@ int * filter (int * first, int * last){
 				if(first[i] <= 0 ){
 					int cont = i;
 					int j = i;
-
 					while(cont < sz){				
 						first[j] = first[j+1];			
 						cont++;
 						j++;
+						
 					}
 					sz--;
+								
 				}							
 			}
 			k++;			
@@ -82,10 +83,21 @@ int main(void){
 		std::cout << std::endl;
 
 		auto new_last = filter(std::begin(A), std::begin(A)+length);
+		
 		std::cout << std::endl;
+
 		std::cout << "Vetor filtrado: ";
 		print(std::begin(A), new_last);
+
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << "Vetor ordenado: ";
+		std::sort(std::begin(A), new_last);
+		print(std::begin(A), new_last);
+
 		std::cout << std::endl << "--------------" << std::endl;
+		
+
 		// std::cout << std::endl << "New last: " << new_last << std::endl;		
 
 		
