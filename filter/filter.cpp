@@ -96,28 +96,9 @@ int main(void){
 		print(std::begin(A), new_last);
 
 		std::cout << std::endl << "--------------" << std::endl;
-		
-
-		// std::cout << std::endl << "New last: " << new_last << std::endl;		
 
 		
 	}
-
-
-
-
-	/* = {2, 5, 6, 5, 6, 7};
-
-	print(std::begin(A), std::end(A));
-
-	std::sort(std::begin(A), std::end(A));
-
-	print(std::begin(A), std::end(A));
-
-	std::reverse(std::begin(A), std::end(A));
-
-	print(std::begin(A), std::end(A));*/
-
 
 
 	return 0;
