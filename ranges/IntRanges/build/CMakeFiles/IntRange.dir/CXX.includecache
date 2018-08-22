@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/guilherme/lp1/ranges/IntRanges/include/int_ranges.h
+iterator
+-
+algorithm
+-
+
+/home/guilherme/lp1/ranges/IntRanges/src/int_ranges.cpp
+../include/int_ranges.h
+/home/guilherme/lp1/ranges/IntRanges/include/int_ranges.h
+iostream
+-
+

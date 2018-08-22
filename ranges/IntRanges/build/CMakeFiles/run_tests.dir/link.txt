@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -pthread   CMakeFiles/run_tests.dir/test/main.cpp.o  -o run_tests  -L/home/guilherme/lp1/ranges/IntRanges/lib -Wl,-rpath,/home/guilherme/lp1/ranges/IntRanges/lib /usr/lib/libgtest.a libIntRange.a 
