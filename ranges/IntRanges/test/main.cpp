@@ -60,7 +60,7 @@ TEST(IntRange, MinNegatives)
 
 }
 
-TEST(IntRange, ReverseBasic)
+TEST(IntRange, ReverseNegativesBasic)
 {
     ir::value_type A[]{ -1, -2, -3, -4, -5 };  
     ir::value_type A_E[]{ -5, -4, -3, -2, -1 };  
@@ -74,10 +74,37 @@ TEST(IntRange, ReverseBasic)
     ASSERT_TRUE (std::equal( std::begin(A), std::end(A), std::begin(A_E) ));
 }
 
-TEST(IntRange, Scalar_MultBasic)
+TEST(IntRange, ReversePositivesBasic)
+{
+    ir::value_type A[]{ 1, 2, 3, 4, 5 };  
+    ir::value_type A_E[]{ 5, 4, 3, 2, 1 };  
+
+
+    auto len_before{ std::distance( std::begin(A), std::end(A) ) };
+    ir::reverse(std::begin(A), std::end(A));
+    auto len_after{ std::distance( std::begin(A), std::end(A) ) };
+
+    ASSERT_EQ( len_before, len_after );
+    ASSERT_TRUE (std::equal( std::begin(A), std::end(A), std::begin(A_E) ));
+}
+
+TEST(IntRange, Scalar_MultBasicNegatives)
 {
     ir::value_type A[]{ -1, -2, -3, -4, -5 };  
     ir::value_type A_E[]{ -3, -6, -9, -12, -15 }; 
+
+    auto len_before{ std::distance( std::begin(A), std::end(A) ) };
+    ir::scalar_multiplication(std::begin(A), std::end(A), 3);
+    auto len_after{ std::distance( std::begin(A), std::end(A) ) };
+
+    ASSERT_EQ( len_before, len_after );
+    ASSERT_TRUE (std::equal( std::begin(A), std::end(A), std::begin(A_E) ));
+}
+
+TEST(IntRange, Scalar_MultBasicPositives)
+{
+    ir::value_type A[]{ 1, 2, 3, 4, 5 };  
+    ir::value_type A_E[]{ 3, 6, 9, 12, 15 }; 
 
     auto len_before{ std::distance( std::begin(A), std::end(A) ) };
     ir::scalar_multiplication(std::begin(A), std::end(A), 3);
@@ -101,6 +128,37 @@ TEST(IntRange, DotProductBasic)
     
 
 }
+
+TEST(IntRange, CompactBasic)
+{
+    ir::value_type A[]{ -2, -8, 2, 7, -3, 10, 1, 0, -3, 7};  
+    ir::value_type B[]{ 2, 7, 10, 1, 7};  
+    
+
+    
+    auto new_last = ir::compact(std::begin(A), std::end(A));
+    
+    ASSERT_TRUE( std::equal( std::begin(A), new_last, std::begin(B) ));
+    
+
+}
+
+TEST(IntRange, CopyBasic)
+{
+    ir::value_type A[]{1, 2, 3, 4, 5};
+    ir::value_type A_E[]{1, 2, 3, 4, 5};  
+    ir::value_type B[]{0,0};  
+
+    
+    auto copy_last = ir::copy(std::begin(A), std::end(A), std::begin(B) );
+
+    
+    
+    ASSERT_TRUE( std::equal( std::begin(B), copy_last, std::begin(A_E)));
+    
+
+}
+
 
 int main(int argc, char** argv)
 {

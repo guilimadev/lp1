@@ -68,7 +68,49 @@ namespace ir
 
         return product;
 
-}
+	}
+
+	int * compact (int * first, int * last){
+
+		auto sz = std::distance(first, last);
+		int cont = sz-1;
+		int k = 0;
+			while(k <= cont){
+				for(auto i(0u); i < sz; ++i){
+					if(first[i] <= 0 ){
+						int cont = i;
+						int j = i;
+						while(cont < sz){				
+							first[j] = first[j+1];			
+							cont++;
+							j++;
+							
+						}
+						sz--;
+									
+					}							
+				}
+				k++;			
+			}		
+		
+		last = &first[sz];
+
+		return last;
+	}
+
+	int * copy ( const int * first , const int * last , int * d_first ){
+		
+
+		while(first != last)
+    	{
+    		*d_first++ = *first++;
+    	}
+		
+
+    	return d_first;
+	}
+
+	
 
 
 }

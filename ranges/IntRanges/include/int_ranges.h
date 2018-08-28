@@ -27,5 +27,12 @@ namespace ir {
     /// Returns an escalar result of the multiplication on 2 vectors   
     int dot_product ( const int * a_first , const int * a_last , const int * b_first );
 
+    /// Compacts the vector puting the non null and positives number in the beginning of the vector 
+    /// and returns a pointer to the new last valid position on the vector
+    int * compact (int * first, int * last);
+
+    int * copy ( const int * first , const int * last , int * d_first );
+
+    int * unique ( int * first , int * last );
 }
 #endif
