@@ -1,9 +1,10 @@
 #ifndef RANGE_LIB_H
 #define RANGE_LIB_H
-#include "int_ranges.h"
 
 #include <iterator> // distance
 #include <algorithm> // swap
+
+std::string print( const int* first, const int* last );
 
 namespace ir {
     using value_type = int;
@@ -22,11 +23,18 @@ namespace ir {
     /// Reverse the order of the elements in range `[first;last)`.
     void reverse( value_type *first, value_type*last );
 
-    /// Returns an escalar result of the multiplication on 2 vectors
+    /// Multiplies the vector content for a scalar
+    void scalar_multiplication ( int *first, int *last, int scalar);
+
+    /// Returns an escalar result of the multiplication on 2 vectors   
     int dot_product ( const int * a_first , const int * a_last , const int * b_first );
 
-    
+    /// Compacts the vector puting the non null and positives number in the beginning of the vector 
+    /// and returns a pointer to the new last valid position on the vector
+    int * compact (int * first, int * last);
+
+    int * copy ( const int * first , const int * last , int * d_first );
+
+    void unique ( int * first , int * last );
 }
-
-
 #endif
