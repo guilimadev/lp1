@@ -27,44 +27,220 @@ int main(void){
 	std::cout << n_cols << " " << n_lines << std::endl;
 
 	
-	std::string A[n_lines][n_cols];
+	int A[n_lines][n_cols];
 	for (int i = 0; i < n_lines; ++i)
 	{
 		for (int j = 0; j < n_cols; ++j)
 		{
 			
-			A[i][j] = "x";
+			A[i][j] = 0;
 			
 		}
 	}
 
 	srand(time(NULL));
 
-	auto rand_line = rand() % n_lines;
-	auto rand_col = rand() % n_cols;
+	int rand_line;
+	int rand_col;
+	int rand_pos;
 
-	std::cout << rand_line << " " << rand_col << std::endl;
+	// Implementando 1 Battleship (tamanho 4)
 
-	A[rand_line][rand_col] = "O";
+	for (int i = 0; i < 1; ++i)
+	{
+		rand_line = rand() % n_lines;
+		rand_col = rand() % n_cols;
+		rand_pos = rand() % 2 + 1;
 
-	if(rand_line + 1 >= n_lines){
-		A[rand_line-1][rand_col] = "O";
+		std::cout << rand_line << " " << rand_col << " " << rand_pos <<" - Battleship";
+
+		if(rand_pos == 1){
+			if(rand_col+3 >= n_cols){
+				i--;
+				std::cout << " entrada invalida" << std::endl;
+			}
+			else{
+				A[rand_line][rand_col+3] = 4;
+				A[rand_line][rand_col+2] = 4; 
+				A[rand_line][rand_col+1] = 4; 
+				A[rand_line][rand_col] = 4;
+				std::cout << std::endl;
+			}
+		}
+
+		if(rand_pos == 2){
+			if(rand_line+3 >= n_lines){
+				i--;
+				std::cout << " entrada invalida" << std::endl;
+			}
+			else{
+				A[rand_line+3][rand_col] = 4;
+				A[rand_line+2][rand_col] = 4; 
+				A[rand_line+1][rand_col] = 4; 
+				A[rand_line][rand_col] = 4;
+				std::cout << std::endl;
+			}
+		}
+		
 	}
-	else{
-		A[rand_line+1][rand_col] = "O";
+
+	// Implementando 2 Cruisers (tamanho 3)
+
+	for (int i = 0; i < 2; ++i)
+	{
+		rand_line = rand() % n_lines;
+		rand_col = rand() % n_cols;
+		rand_pos = rand() % 2 + 1;
+
+		std::cout << rand_line << " " << rand_col << " " << rand_pos << " - Cruiser";
+
+		if(rand_pos == 1){
+			if(A[rand_line][rand_col] != 0 or A[rand_line-1][rand_col] != 0 or A[rand_line+1][rand_col] != 0  or A[rand_line-1][rand_col-1] != 0 or A[rand_line+1][rand_col-1] != 0 
+				or A[rand_line-1][rand_col-2] != 0 or A[rand_line][rand_col-2] != 0 or A[rand_line+1][rand_col-2] != 0 or A[rand_line-1][rand_col+1] != 0
+				or A[rand_line+1][rand_col+1] != 0  or A[rand_line-1][rand_col+2] != 0 or A[rand_line][rand_col+2] != 0 or A[rand_line+1][rand_col+2] != 0 ){
+				i--;	
+				std::cout << " entrada invalida" << std::endl;	
+			}
+			else if(A[rand_line][rand_col+1] != 0 or A[rand_line][rand_col-1] != 0 or rand_col-1 < 0 or rand_col+1 >= n_cols){
+				i--;	
+				std::cout << " entrada invalida" << std::endl;	
+			}
+			else{
+				A[rand_line][rand_col] = 3;
+				A[rand_line][rand_col-1] = 3;
+				A[rand_line][rand_col+1] = 3;
+				std::cout << std::endl;
+			}
+		}
+		if (rand_pos == 2)
+		{
+			if(A[rand_line][rand_col] != 0 or A[rand_line][rand_col-1] != 0 or A[rand_line][rand_col+1] != 0  or A[rand_line-1][rand_col-1] != 0 or A[rand_line-1][rand_col+1] != 0 
+				or A[rand_line-2][rand_col-1] != 0 or A[rand_line-2][rand_col] != 0 or A[rand_line-2][rand_col+1] != 0 or A[rand_line+1][rand_col-1] != 0
+				or A[rand_line+1][rand_col+1] != 0  or A[rand_line+2][rand_col-1] != 0 or A[rand_line+2][rand_col] != 0 or A[rand_line+2][rand_col+1] != 0 ){
+				i--;	
+				std::cout << " entrada invalida" << std::endl;	
+			}
+			else if(A[rand_line+1][rand_col] != 0 or A[rand_line-1][rand_col] != 0 or rand_line-1 < 0 or rand_line+1 >= n_lines){
+				i--;	
+				std::cout << " entrada invalida" << std::endl;	
+			}
+			else{
+				A[rand_line][rand_col] = 3;
+				A[rand_line-1][rand_col] = 3;
+				A[rand_line+1][rand_col] = 3;
+				std::cout << std::endl;
+			}
+		}
 	}
+
+
+
+	// Implementando 3 Destroyers (tamanho 2)
+
+	for (int i = 0; i < 3; ++i)
+	{
+		rand_line = rand() % n_lines;
+		rand_col = rand() % n_cols;
+		rand_pos = rand() % 2 + 1;
+		
+		std::cout << rand_line << " " << rand_col << " " << rand_pos << " - Destroyer";
+
+		if(rand_pos == 2){
+
+
+			if(A[rand_line][rand_col] != 0 or A[rand_line+1][rand_col] != 0 or A[rand_line-1][rand_col] != 0 or A[rand_line][rand_col+1] != 0 
+			   or A[rand_line+1][rand_col+1] != 0 or A[rand_line-1][rand_col+1] != 0 or A[rand_line-1][rand_col+1] != 0
+			   or A[rand_line-1][rand_col-1] != 0 or A[rand_line][rand_col-1] != 0 or A[rand_line+1][rand_col-1] != 0
+			   or A[rand_line+2][rand_col-1] != 0 or A[rand_line+2][rand_col] != 0 or A[rand_line+2][rand_col+1] != 0
+				){
+				i--;	
+				std::cout << " entrada invalida" << std::endl;		
+			}
+			else 
+			{
+
+				A[rand_line][rand_col] = 2;
+
+				if(rand_line + 1 >= n_lines){
+					A[rand_line-1][rand_col] = 2;
+				}
+				else{
+					A[rand_line+1][rand_col] = 2;
+				}	
+					std::cout << std::endl;
+			}
+		}
+		if(rand_pos == 1){
+			if(rand_col+1 >= n_cols){
+				i--;
+				std::cout << " entrada invalida" << std::endl;	
+			}
+			else{
+			if(A[rand_line][rand_col] != 0 or A[rand_line+1][rand_col] != 0 or A[rand_line][rand_col-1] != 0 or A[rand_line+1][rand_col] != 0 
+			   or A[rand_line+1][rand_col+1] != 0 or A[rand_line+1][rand_col-1] != 0 or A[rand_line+1][rand_col-1] != 0
+			   or A[rand_line-1][rand_col-1] != 0 or A[rand_line-1][rand_col] != 0 or A[rand_line-1][rand_col+1] != 0
+			   or A[rand_line-1][rand_col+2] != 0 or A[rand_line][rand_col+2] != 0 or A[rand_line+1][rand_col+2] != 0
+			   ){
+				i--;	
+				std::cout << " entrada invalida" << std::endl;		
+			}
+			else 
+				{
+
+					A[rand_line][rand_col] = 2;
+
+					if(rand_line + 1 >= n_lines){
+						A[rand_line][rand_col-1] = 2;
+					}
+					else{
+						A[rand_line][rand_col+1] = 2;
+					}	
+						std::cout << std::endl;
+				}
+
+			}
+		}
+
+		
+	} 
+ 	
+	
+	// Implementando 4 Submarines (tamanho 1)
+
+	for (int i = 0; i < 4; ++i)
+	{
+		rand_line = rand() % n_lines;
+		rand_col = rand() % n_cols;
+
+		std::cout << rand_line << " " << rand_col << " - Submarine";
+
+		if(A[rand_line][rand_col] != 0 or A[rand_line+1][rand_col] != 0 or A[rand_line-1][rand_col] != 0 or A[rand_line][rand_col-1] != 0
+		or A[rand_line][rand_col+1] != 0 or A[rand_line-1][rand_col-1] != 0 or A[rand_line][rand_col+1] != 0 or A[rand_line +1][rand_col-1] != 0
+		or A[rand_line+1][rand_col+1] != 0 or A[rand_line-1][rand_col+1] != 0)
+		{
+			i--;	
+			std::cout << " entrada invalida" << std::endl;	
+		}
+		else{
+			A[rand_line][rand_col] = 1;
+			std::cout << std::endl;
+		}
+	}
+
+	
+
 	
 
 	for (int i = 0; i < n_lines; ++i)
-	{
-
-		for (int j = 0; j < n_cols; ++j)
 		{
-			std::cout << A[i][j] << " ";
+
+			for (int j = 0; j < n_cols; ++j)
+			{
+				std::cout << A[i][j] << " ";
+			}
+			std::cout << std::endl;
+		
 		}
-		std::cout << std::endl;
-	
-	}
 
 
 	
