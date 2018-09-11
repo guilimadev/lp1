@@ -15,16 +15,31 @@ int main(void){
 
 	std::string line;
 	std::string col;
+	std::string times;
+
+	std::string Col[15] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+	, "K", "L", "M", "N", "O" };
 
 	std::ifstream myfile("databattleship.txt");
 
 	std::getline(myfile, line);
 	std::getline(myfile, col);
+	std::getline(myfile, times);
 
+	auto n_times = std::stoi (times);
 	auto n_cols = std::stoi (col);
 	auto n_lines = std::stoi (line);
 
+	srand(time(NULL));
+
+	int rand_line;
+	int rand_col;
+	int rand_pos;
+
+	for(int t = 0; t < n_times; t++){
+
 	std::cout << n_cols << " " << n_lines << std::endl;
+
 
 	
 	int A[n_lines][n_cols];
@@ -38,11 +53,7 @@ int main(void){
 		}
 	}
 
-	srand(time(NULL));
-
-	int rand_line;
-	int rand_col;
-	int rand_pos;
+	
 
 	// Implementando 1 Battleship (tamanho 4)
 
@@ -227,23 +238,26 @@ int main(void){
 		}
 	}
 
+	std::cout << std::endl;
 	
-
-	
+	for(int c = 0; c < n_cols; c++){
+		std::cout << "|" << Col[c] << "|";
+	}
+	std::cout << std::endl;
 
 	for (int i = 0; i < n_lines; ++i)
 		{
 
 			for (int j = 0; j < n_cols; ++j)
 			{
-				std::cout << A[i][j] << " ";
+				std::cout << " " << A[i][j] << " ";
 			}
-			std::cout << std::endl;
+			std::cout << "|" << i + 1  << "|" <<std::endl;
 		
 		}
 
-
-	
+		std::cout << std::endl;
+	}
 
 
 	return 0;
