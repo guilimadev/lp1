@@ -25,7 +25,10 @@ bool comp_ints(const void *a, const void *b)
 }
 
 
-
+bool p_int ( const void * x){
+    const int * aa = (const int *) x;
+    return *aa < 4;
+}
 
 
 int main()
@@ -75,7 +78,7 @@ int main()
     std::cout << "]" << std::endl;
 
 
-    /* int COPY[]{0};
+     int COPY[]{0,0,0};
     
 
     copy(std::begin(A), std::end(A), std::begin(COPY), sizeof(int));
@@ -90,10 +93,11 @@ int main()
     }
 
     std::cout << "]" << std::endl;
-  */
+  
      
+    auto find_int = (const int *) find_if(std::begin(COPY), std::end(COPY), sizeof(int), p_int);
 
-
+    std::cout << "Find if: " << *find_int << " " << std::endl;
 
 
 

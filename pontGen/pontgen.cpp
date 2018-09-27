@@ -8,7 +8,7 @@
 #include "pontgen.h" 
 
 using Compare = bool (*)(const void *, const void *);
-
+using Predicate = bool (*)(const void *);
 
 typedef unsigned char byte;
 
@@ -56,12 +56,27 @@ void * copy ( const void * first , const void * last , const void * d_first , si
 
 	while(A < B){
 		*D = *A;
-		std::cout << (int) *A << std::endl;
-		std::cout << (int) *D << std::endl;
+		
 		D += size;
 		A += size;
 	}
 
 	return D;
+
+}
+
+const void * find_if ( const void * first , const void * last , size_t size , Predicate p ){
+	
+	byte *A = (byte*) first;
+	byte *B = (byte*) last;
+
+	while (A < B){
+		if(p(A)){
+			return A;
+		}
+		A += size;
+	}
+
+	return B;
 
 }
